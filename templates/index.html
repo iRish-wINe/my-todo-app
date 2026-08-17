@@ -51,6 +51,19 @@
             </li>
         {% endfor %}
     </ul>
+    <!-- Clear All Link styled as a modern orange button -->
+    {% if tasks %}
+        <br>
+        <a href="/clear" style="
+            background-color: #ed8936; 
+            color: white; 
+            text-decoration: none; 
+            padding: 10px 20px; 
+            border-radius: 4px; 
+            display: inline-block;
+            font-size: 14px;
+        ">Clear All Tasks</a>
+    {% endif %}
 
 </body>
 </html>

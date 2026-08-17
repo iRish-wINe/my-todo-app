@@ -51,6 +51,11 @@ def delete_task(task_id):
     # DELETE the specific task row matching this ID from our database table
     query_db("DELETE FROM tasks WHERE id = ?", (task_id,))
     return redirect(url_for("home"))
+@app.route("/clear")
+def clear_all():
+    # This SQL command deletes every single row inside the tasks table
+    query_db("DELETE FROM tasks")
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     app.run(debug=True)
