@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Live Todo App</title>
+    <title>My Interactive Todo App</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 40px; background-color: #f0f4f8; }
         form { background-color: white; padding: 20px; border-radius: 8px; max-width: 400px; margin-bottom: 20px; }
         input[type="text"] { width: 90%; padding: 10px; margin-bottom: 15px; }
         button { background-color: #2b6cb0; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; }
-        ul { list-style-type: none; padding: 0; max-width: 400px; }
-        li { background-color: white; padding: 12px; margin-bottom: 8px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        ul { list-style-type: none; padding: 0; max-width: 440px; }
+        
+        /* Flexbox allows us to align text on the left and the delete button on the right */
+        li { 
+            background-color: white; 
+            padding: 12px; 
+            margin-bottom: 8px; 
+            border-radius: 4px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            background-color: #e53e3e; /* Red color */
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .delete-btn:hover { background-color: #c53030; }
     </style>
 </head>
 <body>
 
-    <h1>My Live Todo App</h1>
+    <h1>My Interactive Todo App</h1>
     
-    <!-- The input form -->
     <form method="POST" action="/">
         <label>Add a new task:</label><br><br>
         <input type="text" name="todo_item" placeholder="e.g., Buy groceries" required>
@@ -24,9 +43,12 @@
 
     <h2>Current Tasks:</h2>
     <ul>
-        <!-- Day 4 Loop Concept inside HTML! -->
         {% for task in tasks %}
-            <li>✅ {{ task }}</li>
+            <li>
+                <span>✅ {{ task.name }}</span>
+                <!-- This dynamically creates a custom URL like /delete/1 -->
+                <a href="/delete/{{ task.id }}" class="delete-btn">Delete</a>
+            </li>
         {% endfor %}
     </ul>
 
